@@ -14,6 +14,8 @@ lib-cov
 *.pid
 *.gz
 
+libs
+
 pids
 logs
 results
