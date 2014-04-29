@@ -1,0 +1,1 @@
+angular.module('JSReefApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LightingCtrl', 'PumpsCtrl']);
