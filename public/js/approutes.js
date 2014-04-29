@@ -15,6 +15,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
             templateUrl: 'pumps.html',
             controller: 'PumpsController'
         })
+        .when('/settings', {
+            templateUrl: 'settings.html',
+            controller: 'SettingsController'
+        })
 
         .otherwise({
             //templateUrl: 'index.html',
