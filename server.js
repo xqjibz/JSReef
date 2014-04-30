@@ -34,7 +34,7 @@ var server = app.listen(port, function(){
 
 })
 
-var serverReadyCB = require('./lib/server-ready-cb')(tanks)
+var serverReadyCB = require('./lib/server-ready-cb')(tanks, argv)
 server.on('ready', serverReadyCB)
 
 

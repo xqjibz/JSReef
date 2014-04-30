@@ -1,17 +1,21 @@
 var opt = require('optimist')
     .usage('Usage: $0')
     .options('m', {
-        "alias": 'mongo',
-        "default": 'localhost',
-        "describe": 'Set mongo database host'
+            "alias"     : 'mongo'
+        ,   "default"   : 'localhost'
+        ,   "describe"  : 'Set mongo database host'
     })
     .options('h', {
-    "alias": 'help',
-    "describe": 'Show this help'
+            "alias"     : 'help'
+        ,   "describe"  : 'Show this help'
     })
     .options('p', {
-        "alias" : "port"
-        ,   "describe" : "Port for the server to listen on"
+            "alias"     : "port"
+        ,   "describe"  : "Port for the server to listen on"
+    })
+    .options('noboard', {
+            "default"   : false
+        ,   "describe"  : "For testing the front end on a machine without the arduino installed."
     })
 
     ,   argv = opt.argv
