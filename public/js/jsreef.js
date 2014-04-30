@@ -1,1 +1,1 @@
-angular.module('JSReefApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LightingCtrl', 'PumpsCtrl', 'SettingsCtrl']);
+angular.module('JSReefApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'LightingCtrl', 'PumpsCtrl', 'SettingsCtrl', 'OutletsCtrl']);
