@@ -9,6 +9,10 @@ var opt = require('optimist')
     "alias": 'help',
     "describe": 'Show this help'
     })
+    .options('p', {
+        "alias" : "port"
+        ,   "describe" : "Port for the server to listen on"
+    })
 
     ,   argv = opt.argv
 

@@ -1,30 +1,32 @@
 #!/usr/bin/env node
-var express = require('express');
-var app     = express();
-var     mongoose    = require('mongoose')
-    ,   argv        = require('./options')
+var     express         = require('express')
+    ,   app             = express()
+    ,   mongo           = require('mongoskin')
+    ,   argv            = require('./options')
+    ,   EventEmitter    = require('events').EventEmitter
 
-// configuration ===========================================
-
-// config files
-//var db = require('./config/db');
-
-var port = process.env.PORT || 8080; // set our port
-// mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
+var port = process.env.PORT || argv.port || 3000; // set our port
 
 app.configure(function() {
-    app.use(express.static(__dirname + '/public')); 	// set the static files location /public/img will be /img for users
-    app.use(express.logger('dev')); 					// log every request to the console
-    app.use(express.bodyParser()); 						// pull information from html in POST
-    app.use(express.methodOverride()); 					// simulate DELETE and PUT
+    app.use(express.static(__dirname + '/public')) 	// set the static files location /public/img will be /img for users
+    app.use(express.logger('dev')) 					// log every request to the console
+    app.use(express.bodyParser()) 						// pull information from html in POST
+    app.use(express.methodOverride()) 					// simulate DELETE and PUT
 });
 
-// routes ==================================================
-require('./app/routes')(app); // pass our application into our routes
+// routes
+require('./app/routes')(app)
 
-// start app ===============================================
-var server = app.listen(3000, function(){
-    console.log('listening on ' + server.address().port)
-});
-console.log('Magic happens on port ' + port); 			// shoutout to the user
-exports = module.exports = app; 						// expose app
+// start app
+var server = app.listen(port, function(){
+    //console.log('listening on ' + server.address().port)
+    // six one 1/2 dozen the other, let's connect to mongo here.
+
+    // find the tanks we're controlling, and we'll put them into an array
+
+
+    // then let's move onto johnny 5, and the arduino
+
+})
+
+exports = module.exports = app
