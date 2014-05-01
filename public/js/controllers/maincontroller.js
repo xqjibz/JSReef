@@ -1,8 +1,15 @@
 
 angular.module('MainCtrl', []).controller('MainController', function ( $route, $scope, $location, Restangular)  {
 
-      //$scope.message = 'Main controller'
-        console.log('main controller')
+
+
+
+    $scope.tanks = Restangular.all('tanks').getList().$object
+
+
+    console.log($scope.tanks)
+
+    console.log('main controller')
 
 })
 

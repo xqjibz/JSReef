@@ -1,9 +1,11 @@
 var util = require('util')
 
-module.exports = function(app) {
+module.exports = function(app, tanks) {
 
     // server routes
-
+    app.get('/tanks', function(request, response){
+        response.send(tanks)
+    })
 
     // catch all route
     app.get('*', function(req, res) {

@@ -31,8 +31,11 @@ html
                         a(href="/settings") Settings
                     li
                         a(href="/outlets") Outlets
+                select(ng-model="tankSelection", class="padding-top: 6px;").pull-right
+                    option(ng-repeat="tank in tanks") {{tank._id}}
 
         div
             p this is the index file, yay.!
+            p {{tanks}}
         div(ng-view)
 

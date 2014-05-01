@@ -1,5 +1,5 @@
 
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', ['ngRoute', 'restangular']).config(['$routeProvider', '$locationProvider', 'RestangularProvider', function($routeProvider, $locationProvider, RestangularProvider) {
 
     $routeProvider
 //        .when('/', {
@@ -32,5 +32,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 
     $locationProvider.html5Mode(true);
+
+
+    RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
+
 
 }])

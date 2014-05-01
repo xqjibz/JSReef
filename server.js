@@ -7,7 +7,13 @@ var     express         = require('express')
     ,   util            = require('util')
 
 var port = process.env.PORT || argv.port || 3000; // set our port
+// this is where all of our tanks get stored and processed
+var tanks = []
+//TODO This connects here, and really should do something other than move on.
+var db = mongo.db("mongodb://localhost/reef", {safe : true})
+
 util.inherits(app, EventEmitter)
+
 app.configure(function() {
     app.use(express.static(__dirname + '/public')) 	// set the static files location /public/img will be /img for users
     app.use(express.logger('dev')) 					// log every request to the console
@@ -16,12 +22,11 @@ app.configure(function() {
 });
 
 // routes
-require('./app/routes')(app)
+//TODO this is going to require a refactor to allow for the proper testing scheme
+require('./app/routes')(app, tanks)
 
 
-// tanks/controllers array
-var tanks = []
-var db = mongo.db("mongodb://localhost/reef", {safe : true})
+
 // start app
 var server = app.listen(port, function(){
     //console.log('listening on ' + server.address().port)
