@@ -1,15 +1,22 @@
 
-angular.module('MainCtrl', []).controller('MainController', function ( $route, $scope, $location, Restangular)  {
+angular.module('MainCtrl', []).controller('MainController', function ( $route, $scope, $location, Restangular, SharedData)  {
 
 
 
 
-    $scope.tanks = Restangular.all('tanks').getList().$object
+    Restangular.all('tanks').getList().then(function(data){
+        $scope.tanks = data
+
+    })
 
 
     console.log($scope.tanks)
 
     console.log('main controller')
+
+    $scope.selectTankChange = function(){
+        SharedData.saveSelectedTank($scope.tankSelection)
+    }
 
 })
 

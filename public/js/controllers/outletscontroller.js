@@ -1,7 +1,9 @@
 
-angular.module('OutletsCtrl', []).controller('OutletsController', function ( $route, $scope, $location)  {
+angular.module('OutletsCtrl', []).controller('OutletsController', function ( $route, $scope, $location, Restangular, SharedData)  {
 
-    $scope.message = 'outlets controller scope message'
+
+    $scope.selectedTank = SharedData.getSelectedTank()
+    $scope.outlets = Restangular.all('/tank/' + $scope.selectedTank + '/outlets').getList().$object
 
 
 })

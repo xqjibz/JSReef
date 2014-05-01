@@ -10,6 +10,7 @@ html
         script(src="libs/angular-route/angular-route.js")
         script(src="libs/underscore/underscore.js")
         script(src="libs/restangular/dist/restangular.js")
+        script(src="js/services/shared-data.js")
         script(src="js/controllers/maincontroller.js")
         script(src="js/controllers/lightingcontroller.js")
         script(src="js/controllers/pumpscontroller.js")
@@ -31,11 +32,12 @@ html
                         a(href="/settings") Settings
                     li
                         a(href="/outlets") Outlets
-                select(ng-model="tankSelection", class="padding-top: 6px;").pull-right
+                select(ng-model="tankSelection", class="padding-top: 6px;", ng-change="selectTankChange()").pull-right
                     option(ng-repeat="tank in tanks") {{tank._id}}
 
         div
             p this is the index file, yay.!
-            p {{tanks}}
+            p {{tankSelection}}
+
         div(ng-view)
 
