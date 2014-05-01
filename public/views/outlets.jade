@@ -3,3 +3,14 @@ div
     {{message}}
 
     {{selectedTank}}
+
+    table.table-bordered.table-striped.table-hover
+        tbody
+            tr
+                th ID
+                th Description
+                th Pin ID
+            tr(ng-repeat="outlet in outlets")
+                td {{outlet.id}}
+                td {{outlet.description}}
+                td {{outlet.pin}}
