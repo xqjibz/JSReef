@@ -7,14 +7,15 @@
     controller : "type of arduino",
     serial_port : "/dev/acm0",
     outlets : [
-        { id : 1, pin : 4, description: "heater", }
+        { id : 1, pin : 4, description: "heater"}
     ],
     lights : [
         { id: 1, pin : 5, description : "RB LDD 1000H"}
     ],
     schedules : [
-        { id: 1, pattern : "every monday at 06:00 PM", action : "on", device : "outlet", device_id : 1}
-    ],
+        { id: 1, pattern : "every monday at 06:00 PM", action : "on", device : "outlet", device_id : 1},
+        { id: 2, pattern : "every wed at 06:00 PM", action : "off", device : "outlet", device_id : 1},
+        { id: 3, pattern : "on the first day of the month at 06:00 PM", action : "toggle", device : "outlet", device_id : 1}    ],
     temp : [
         { id : 1, description : "in sump", voltage_range : "15 * V" }
     ]
