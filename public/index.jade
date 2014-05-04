@@ -36,9 +36,9 @@ html(lang="en")
                         select(ng-model="tankSelection", class="padding-top: 6px;", ng-change="selectTankChange()").pull-right
                             option(ng-repeat="tank in tanks") {{tank._id}}
 
-        div
+        div.row-fluid
             p this is the index file, yay.!
             p {{tankSelection}}
 
-        div(ng-view)
+        div(ng-view).row-fluid.span12
 
