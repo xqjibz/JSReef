@@ -5,9 +5,7 @@ html(lang="en")
         meta(charset='utf8')
         base(href='/')
         title JS Tank controller
-        script(src="libs/jquery/dist/jquery.js")
         link(rel='stylesheet', href='libs/bootstrap/dist/css/bootstrap.min.css')
-        script(src="libs/bootstrap/dist/js/bootstrap.js")
         script(src="libs/angular/angular.js")
         script(src="libs/angular-route/angular-route.js")
         script(src="libs/underscore/underscore.js")
@@ -22,33 +20,25 @@ html(lang="en")
         script(src="js/jsreef.js")
 
     body(ng-app="JSReefApp", ng-controller="MainController")
-        nav(role="navigation").navbar.navbar-default
-            div.container-fluid
-                div#reef-nav.collapse.navbar-collapse
+        nav.navbar.navbar-default
+            div.collapse.navbar-collapse
 
-                    ul.nav.navbar-nav.navbar-left
-                        li
-                            a(href="/lighting") Lights
-                        li
-                            a(href="/pumps") Pumps
-                        li
-                            a(href="/settings") Settings
-                        li
-                            a(href="/outlets") Outlets
-                        li.dropdown
-                            a(href="#", class="dropdown-toggle", data-toggle="dropdown") Tanks
-
-                                b.caret
-                            ul.dropdown-menu
-                                li(ng-repeat="tank in tanks")
-                                    a(href="#", ng-click="selectedTankChange(tank._id)") {{tank._id}}
-
+                ul.nav.navbar-nav.navbar-left
+                    li
+                        a(href="/lighting") Lights
+                    li
+                        a(href="/pumps") Pumps
+                    li
+                        a(href="/settings") Settings
+                    li
+                        a(href="/outlets") Outlets
+                    li
+                        select(ng-model="tankSelection", class="padding-top: 6px;", ng-change="selectTankChange()").pull-right
+                            option(ng-repeat="tank in tanks") {{tank._id}}
 
         div
-            p Controlling: {{tankSelection}}
-
-            select(ng-model="tankSelection", class="margin-top: 10px 0; vertical-align: middle;", ng-change="selectTankChange()")
-                option(ng-repeat="tank in tanks") {{tank._id}}
+            p this is the index file, yay.!
+            p {{tankSelection}}
 
         div(ng-view)
 

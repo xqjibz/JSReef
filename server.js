@@ -35,6 +35,7 @@ var server = app.listen(port, function(){
     db.collection('tanks').findItems({}, function(err, results){
         tanks.push.apply(tanks, results)
         server.emit('ready')
+        //console.log(util.inspect(tanks, true,null))
     })
 
 })

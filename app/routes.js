@@ -4,6 +4,8 @@ module.exports = function(app, tanks) {
 
     // server routes
     app.get('/tanks', function(request, response){
+        console.log('sending tanks')
+        console.log(util.inspect(tanks, true, null))
         response.send(tanks)
     })
     app.get('/tanks/:id/outlets', function(request, response){
