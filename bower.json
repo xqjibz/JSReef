@@ -8,6 +8,7 @@
         "angular": "1.2.16",
         "angular-route": "1.2.16",
         "restangular" : "1.4.0",
-        "underscore" : "1.6.0"
+        "underscore" : "1.6.0",
+        "jquery" : "2.1.0"
     }
 }

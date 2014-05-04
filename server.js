@@ -22,7 +22,7 @@ app.configure(function() {
 });
 
 // routes
-//TODO this is going to require a refactor to allow for the proper testing scheme
+
 require('./app/routes')(app, tanks)
 
 
