@@ -10,7 +10,7 @@ div
                 th ID
                 th Description
                 th Pin ID
-            tr(ng-repeat="outlet in outlets")
+            tr(ng-repeat="outlet in outlets", ng-show="selectedTank")
                 td {{outlet.id}}
                 td {{outlet.description}}
                 td {{outlet.pin}}
