@@ -10,8 +10,19 @@ angular.module('OutletsCtrl', []).controller('OutletsController', function ( $ro
         $scope.selectedTank = SharedData.getSelectedTank()
         if($scope.selectedTank !== null){
             $scope.outlets = Restangular.all('tanks/' + $scope.selectedTank + '/outlets').getList().$object
+            $scope.allOutlets = Restangular.all('tanks/'+ $scope.selectedTank + '/outlets').getList()
         }
 
+    }
+
+    $scope.operateOutlet = function(outletIndex, action){
+        console.log(outletIndex)
+        Restangular.all('tanks/'+ $scope.selectedTank + '/outlets').getList().then(function(outlets){
+                // match the outlet id here.
+                outlets[outletIndex].action = { name : action }
+                outlets[outletIndex].put()
+            }
+        )
     }
 
     $scope.$watch(function (){
