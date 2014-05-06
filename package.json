@@ -13,6 +13,7 @@
         "browserify": "~2.26.0",
         "angular"       : "~1.2.16",
         "twitter-bootstrap"     : "~2.1.1",
-        "johnny-five"   : "0.7.31"
+        "johnny-five"   : "0.7.31",
+        "socket.io"     : "0.9.15"
     }
 }
