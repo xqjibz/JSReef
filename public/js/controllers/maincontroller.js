@@ -4,7 +4,8 @@ angular.module('MainCtrl', []).controller('MainController', function ( $route, $
 
 
     Restangular.all('tanks').getList().then(function(data){
-        $scope.tanks = data
+        $scope.tanks = angular.copy(data)
+        console.log($scope.tanks)
 
     })
 

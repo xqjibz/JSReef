@@ -5,24 +5,29 @@ module.exports = function(app, tanks) {
     // server routes
     app.get('/tanks', function(request, response){
         console.log('sending tanks')
-        console.log(util.inspect(tanks, true, null))
-        response.send(tanks)
+        //console.log(util.inspect(tanks, true, null))
+        var returnValue = tanks.map(function(element) {return {_id : element._id} })
+        console.log(returnValue)
+        response.send(returnValue)
     })
     app.get('/tanks/:id/outlets', function(request, response){
+        console.log('get /tanks/id/outlets')
         console.log(request.params.id)
         var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
-        response.send(tanks[index].outlets)
+
+        var returnValue = tanks[index].outlets.map( function(element){ return { id: element.id, pin: element.pin, description: element.description}})
+        response.send(returnValue)
     })
+
+    // PUT is for turning them on and off.
     app.put('/tanks/:id/outlets/:outletid', function(request, response){
         var action = request.body.action.name
-        console.log(request.params.outletid)
+
         var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
-        var outletIndex = tanks[index].outlets.map(function(element){return element.id}).indexOf(request.params.outletid)
-        console.log('index of tank: ' + index)
-        console.log('index of outlet : ' + outletIndex)
-        console.log('action would be : '  + action)
-        if(tanks[index].outlets[outletIndex].pin){
-            var outlet = tanks[index].outlets[outletIndex].pin
+        var outletIndex = tanks[index].outlets.map(function(element){return element.id}).indexOf(parseInt(request.params.outletid))
+        // double checking here, we could call this out of order.
+        if(tanks[index].outlets[outletIndex].arduinoPin){
+            var outlet = tanks[index].outlets[outletIndex].arduinoPin
             if(action === 'on'){
                 outlet.on()
             }
@@ -37,7 +42,7 @@ module.exports = function(app, tanks) {
 
         // this is not correct, though I don't need the object back, perhaps this route should be a get.
         // maybe send back led.status() here.
-        response.send('OK')
+        //response.send('OK')
     })
     // catch all route
     app.get('*', function(req, res) {
