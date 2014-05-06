@@ -42,7 +42,7 @@ module.exports = function(app, tanks) {
 
         // this is not correct, though I don't need the object back, perhaps this route should be a get.
         // maybe send back led.status() here.
-        //response.send('OK')
+        response.send(204)
     })
     // catch all route
     app.get('*', function(req, res) {
