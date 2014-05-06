@@ -40,15 +40,12 @@ module.exports = function(app, tanks) {
 
         }
 
-        // this is not correct, though I don't need the object back, perhaps this route should be a get.
-        // maybe send back led.status() here.
+        // send status 204, no content.
         response.send(204)
     })
     // catch all route
     app.get('*', function(req, res) {
-        console.log('sending index')
-        //console.log(util.inspect(req, true, null))
-        res.sendfile('./public/index.html'); // load our public/index file
+        res.sendfile('./public/index.html');
     });
 
 };

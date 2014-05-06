@@ -17,6 +17,7 @@ angular.module('OutletsCtrl', []).controller('OutletsController', function ( $ro
 
     $scope.operateOutlet = function(outletIndex, action){
         console.log(outletIndex)
+        //TODO: figure out the restangular way of handling this properly inside the controller.
         Restangular.all('tanks/'+ $scope.selectedTank + '/outlets').getList().then(function(outlets){
                 // match the outlet id here.
                 outlets[outletIndex].action = { name : action }
