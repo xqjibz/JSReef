@@ -44,8 +44,12 @@ module.exports = function(app, tanks) {
         response.send(204)
     })
     // catch all route
+    app.get('/outlets', function(request, response){
+        response.render('outlets')
+    })
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html');
+        //res.sendfile('./public/index.html');
+        res.render('index')
     });
 
 };

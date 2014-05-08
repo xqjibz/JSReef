@@ -20,7 +20,7 @@ angular.module('appRoutes', ['ngRoute', 'restangular']).config(['$routeProvider'
             controller: 'SettingsController'
         })
         .when('/outlets', {
-            templateUrl: 'views/outlets.html',
+            templateUrl: 'outlets',
             controller: 'OutletsController'
         })
 
