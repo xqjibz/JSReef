@@ -1,3 +1,25 @@
-div
-    p Lighting Controller Message
-    {{message}}
+div.col-md-1
+    div.col-md-10
+        p Lighting
+            table.table-bordered.table-striped.table-hover
+                tbody
+                    tr
+                        th ID
+                        th Description
+                        th Pin ID
+                        th On
+                        th Off
+                        th Toggle
+                        th Fade
+                    tr(ng-repeat="light in lighting", ng-show="selectedTank")
+                        td {{light.id}}
+                        td {{light.description}}
+                        td {{light.pin}}
+                        td
+                            button(ng-click="operateOutlet($index,'on')").btn On
+                        td
+                            button(ng-click="operateOutlet($index,'off')").btn Off
+                        td
+                            button(ng-click="operateOutlet($index,'toggle')").btn Toggle
+                        td
+                            button(ng-click="fadeLight($index, value)").btn Fade

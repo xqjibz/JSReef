@@ -1,5 +1,9 @@
 var util = require('util')
 
+var returnIdPinDesc = function(element){
+    return { id: element.id, pin: element.pin, description: element.description}
+}
+
 module.exports = function(app, tanks) {
 
     // server routes
@@ -15,7 +19,7 @@ module.exports = function(app, tanks) {
         console.log(request.params.id)
         var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
 
-        var returnValue = tanks[index].outlets.map( function(element){ return { id: element.id, pin: element.pin, description: element.description}})
+        var returnValue = tanks[index].outlets.map(returnIdPinDesc)
         response.send(returnValue)
     })
 
@@ -43,10 +47,27 @@ module.exports = function(app, tanks) {
         // send status 204, no content.
         response.send(204)
     })
-    // catch all route
-    app.get('/outlets', function(request, response){
+
+    app.get('/tanks/:id/lighting', function(request, response){
+        var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
+
+        var returnValue = tanks[index].lights.map(returnIdPinDesc)
+        response.send(returnValue)
+    })
+
+    app.get('/views/settings', function(request, response){
+        response.render('settings')
+    })
+    app.get('/views/pumps', function(request, response){
+        response.render('pumps')
+    })
+    app.get('/views/lighting', function(request, response){
+        response.render('lighting')
+    })
+    app.get('/views/outlets', function(request, response){
         response.render('outlets')
     })
+    // catch all
     app.get('*', function(req, res) {
         //res.sendfile('./public/index.html');
         res.render('index')

@@ -8,19 +8,19 @@ angular.module('appRoutes', ['ngRoute', 'restangular']).config(['$routeProvider'
 //
 //        })
         .when('/lighting', {
-            templateUrl: 'views/lighting.html',
+            templateUrl: 'views/lighting',
             controller: 'LightingController'
         })
         .when('/pumps', {
-            templateUrl: 'views/pumps.html',
+            templateUrl: 'views/pumps',
             controller: 'PumpsController'
         })
         .when('/settings', {
-            templateUrl: 'views/settings.html',
+            templateUrl: 'views/settings',
             controller: 'SettingsController'
         })
         .when('/outlets', {
-            templateUrl: 'outlets',
+            templateUrl: 'views/outlets',
             controller: 'OutletsController'
         })
 
