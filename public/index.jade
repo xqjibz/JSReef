@@ -6,7 +6,12 @@ html(lang="en")
         base(href='/')
         title JS Tank controller
         link(rel='stylesheet', href='libs/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='libs/ng-slider/dist/ng-slider-min.css')
+
+
         script(src="libs/angular/angular.js")
+        script(src="libs/angular-sanitize/angular-sanitize.js")
+        script(src="libs/ng-slider/dist/ng-slider.min.js")
         script(src="libs/angular-route/angular-route.js")
         script(src="libs/underscore/underscore.js")
         script(src="libs/restangular/dist/restangular.js")
@@ -25,7 +30,7 @@ html(lang="en")
 
                 ul.nav.navbar-nav.navbar-left
                     li
-                        a(href="/lighting") Lights
+                        a(href="/lighting") Lightsqv
                     li
                         a(href="/pumps") Pumps
                     li

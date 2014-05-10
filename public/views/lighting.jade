@@ -10,16 +10,19 @@ div.col-md-1
                         th On
                         th Off
                         th Toggle
-                        th Fade
+                        th Fade +
+                        th Fade -
                     tr(ng-repeat="light in lighting", ng-show="selectedTank")
                         td {{light.id}}
                         td {{light.description}}
                         td {{light.pin}}
                         td
-                            button(ng-click="operateOutlet($index,'on')").btn On
+                            button(ng-click="operateLight($index,'on')").btn On
                         td
-                            button(ng-click="operateOutlet($index,'off')").btn Off
+                            button(ng-click="operateLight($index,'off')").btn Off
                         td
-                            button(ng-click="operateOutlet($index,'toggle')").btn Toggle
+                            button(ng-click="operateLight($index,'toggle')").btn Toggle
                         td
-                            button(ng-click="fadeLight($index, value)").btn Fade
+                            button(ng-click="operateLight($index,'fadeup')").btn +
+                        td
+                            button(ng-click="operateLight($index,'fadedown')").btn -

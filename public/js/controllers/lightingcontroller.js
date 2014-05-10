@@ -1,4 +1,3 @@
-
 angular.module('LightingCtrl', []).controller('LightingController', function ( $route, $scope, $location, Restangular, SharedData)  {
 
     $scope.updateLighting = function(){
@@ -8,6 +7,10 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
             $scope.allLighting = Restangular.all('tanks/'+ $scope.selectedTank + '/lighting').getList()
         }
 
+    }
+
+    $scope.operateLight = function(index, action){
+        console.log(action)
     }
 
     $scope.$watch(function (){
