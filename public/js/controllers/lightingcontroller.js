@@ -11,6 +11,8 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
 
     $scope.operateLight = function(index, action){
         console.log(action)
+
+        Restangular.one('tanks', $scope.selectedTank).one('lighting', $scope.lighting[index].id).one('action', action).get()
     }
 
     $scope.$watch(function (){
@@ -19,6 +21,7 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
             tankSelector : SharedData.getSelectedTank()
         }
     }, $scope.updateLighting, true)
+
 })
 
 

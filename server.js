@@ -38,26 +38,15 @@ server.listen(port, function(){
     console.log('server ready')
     db.collection('tanks').findItems({}, function(err, results){
         tanks.push.apply(tanks, results)
-        //server.emit('ready')
+        server.emit('ready')
         //console.log(util.inspect(tanks, true,null))
     })
 
 })
 
-// start app
-//server.createServer(app)
 
-//var server = app.listen(port, function(){
-//    //console.log('listening on ' + server.address().port)
-//    // six one 1/2 dozen the other, let's connect to mongo here.
-//
+var serverReadyCB = require('./lib/server-ready-cb')(tanks, argv)
+server.on('ready', serverReadyCB)
 
-//})
-//
-//var serverReadyCB = require('./lib/server-ready-cb')(tanks, argv)
-//server.on('ready', serverReadyCB)
-//server.on('ready', function(){
-//    console.log('server ready')
-//})
 
 exports = module.exports = app

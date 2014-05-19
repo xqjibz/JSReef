@@ -55,6 +55,47 @@ module.exports = function(app, tanks) {
         response.send(returnValue)
     })
 
+    app.get('/tanks/:id/lighting/:lightid/action/:action', function(request, response){
+        var     action = request.params.action
+            ,   tankid = request.params.id
+            ,   lightid = request.params.lightid
+
+        var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
+        var lightIndex = tanks[index].lights.map(function(element){return element.id}).indexOf(parseInt(request.params.lightid))
+
+        console.log('requesting: ' + action + ' for: ' + lightIndex)
+
+        if(tanks[index].lights[lightIndex].arduinoPin){
+            var light = tanks[index].lights[lightIndex].arduinoPin
+            console.log('led status: ' + light.isOn)
+            if(action === 'on'){
+                // this seems nicer to the LED to me vs on()
+                light.fadeIn()
+                console.log('TURN ON')
+                console.log(light.isOn)
+            }
+            if(action === 'off'){
+                light.fadeOut()
+                console.log('TURN OFF')
+                console.log(light.isOn)
+            }
+            if(action === 'toggle'){
+                console.log('toggle')
+                console.log(light.isOn)
+                //console.log(util.inspect(light, true, null))
+                if(light.isOn){
+                    console.log('fade out')
+                    light.fadeOut()
+                } else {
+                    console.log('fade in')
+                    light.fadeIn()
+                }
+            }
+
+        }
+        response.send(204)
+    })
+
     app.get('/views/settings', function(request, response){
         response.render('settings')
     })
