@@ -91,6 +91,18 @@ module.exports = function(app, tanks) {
                     light.fadeIn()
                 }
             }
+            if(action === 'fadedown'){
+                if(light.value === null){
+                    if(light.isOn){
+                        light.brightness(255)
+                    } else {
+                        light.brightness(0)
+                    }
+                }
+
+                light.brightness(light.value - 10)
+                console.log(light.value)
+            }
 
         }
         response.send(204)
