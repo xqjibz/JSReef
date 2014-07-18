@@ -1,0 +1,22 @@
+div.col-md-1
+div.col-md-10
+    p Schedules
+    table.table-bordered.table-striped.table-hover
+        tbody
+            tr
+                th ID
+                th Description
+                th Schedule
+                th Enable
+                th Disable
+                th Toggle
+            tr(ng-repeat="outlet in outlets", ng-show="selectedTank")
+                td {{outlet.id}}
+                td {{outlet.description}}
+                td {{outlet.pin}}
+                td
+                    button(ng-click="operateOutlet($index,'on')").btn On
+                td
+                    button(ng-click="operateOutlet($index,'off')").btn Off
+                td
+                    button(ng-click="operateOutlet($index,'toggle')").btn Toggle

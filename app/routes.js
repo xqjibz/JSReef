@@ -120,6 +120,9 @@ module.exports = function(app, tanks) {
     app.get('/views/outlets', function(request, response){
         response.render('outlets')
     })
+    app.get('/views/schedules', function(request, response){
+        response.render('schedules')
+    })
     // catch all
     app.get('*', function(req, res) {
         //res.sendfile('./public/index.html');

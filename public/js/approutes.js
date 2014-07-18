@@ -23,6 +23,11 @@ angular.module('appRoutes', ['ngRoute', 'restangular']).config(['$routeProvider'
             templateUrl: 'views/outlets',
             controller: 'OutletsController'
         })
+        .when('/schedules', {
+            templateUrl: 'views/schedules',
+            controller: 'SchedulesController'
+        })
+
 
         .otherwise({
             //templateUrl: 'index.html',
