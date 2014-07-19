@@ -20,3 +20,10 @@ div.col-md-10
                     button(ng-click="operateOutlet($index,'off')").btn Off
                 td
                     button(ng-click="operateOutlet($index,'toggle')").btn Toggle
+
+    div.input-append
+        input(type="text", id="scheduleName", name="scheduleName", placeholder="Description....", ng-model="scheduleName")
+        input(type="text", id="scheduleLater", name="scheduleLaster", placeholder="Every day at 1:00 am", ng-model="scheduleLater")
+        select(class="padding-top: 6px;", ng-model="scheduleItem")
+            option(ng-repeat="item in allowedScheduleItems") {{item.name}}
+        button.btn(id="savebtn", ng-click="saveSchedule()") Add

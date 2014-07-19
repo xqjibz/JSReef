@@ -10,6 +10,7 @@
         "restangular" : "1.4.0",
         "underscore" : "1.6.0",
         "jquery" : "2.1.0",
+        "ng-slider" : "0.1.4",
         "socket.io" : "0.9.15"
 
     }

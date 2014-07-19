@@ -12,6 +12,7 @@ div.col-md-1
                         th Toggle
                         th Fade +
                         th Fade -
+                        th Time
                     tr(ng-repeat="light in lighting", ng-show="selectedTank")
                         td {{light.id}}
                         td {{light.description}}
@@ -26,3 +27,7 @@ div.col-md-1
                             button(ng-click="operateLight($index,'fadeup')").btn +
                         td
                             button(ng-click="operateLight($index,'fadedown')").btn -
+                        td.input-append
+                            select(ng-model="dayNightSelector")
+                                option(value='day') Day
+                                option(value='night') Night
