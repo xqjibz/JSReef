@@ -10,8 +10,7 @@ div.col-md-1
                         th On
                         th Off
                         th Toggle
-                        th Fade +
-                        th Fade -
+                        th.col-md-12 Fade
                         th Time
                     tr(ng-repeat="light in lighting", ng-show="selectedTank")
                         td {{light.id}}
@@ -23,10 +22,10 @@ div.col-md-1
                             button(ng-click="operateLight($index,'off')").btn Off
                         td
                             button(ng-click="operateLight($index,'toggle')").btn Toggle
-                        td
-                            button(ng-click="operateLight($index,'fadeup')").btn +
-                        td
-                            button(ng-click="operateLight($index,'fadedown')").btn -
+
+                        td.input-append
+
+                            input(ng-model="lightValue", type='text', id='mySlider{{$index}}', slider options='sliderOptions')
                         td.input-append
                             select(ng-model="dayNightSelector")
                                 option(value='day') Day

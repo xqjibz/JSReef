@@ -9,6 +9,16 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
 
     }
 
+    $scope.sliderOptions = {
+            from    : 0
+        ,   to      : 255
+        ,   step    : 1
+    }
+
+    // this needs tied to the J5 value for the LED Object
+    $scope.lightValue = 0
+
+
     $scope.operateLight = function(index, action){
         console.log(action)
 
