@@ -1,32 +1,41 @@
-div.col-md-1
-    div.col-md-10
-        p Lighting
-            table.table-bordered.table-striped.table-hover
-                tbody
-                    tr
-                        th ID
-                        th Description
-                        th Pin ID
-                        th On
-                        th Off
-                        th Toggle
-                        th.col-md-12 Fade
-                        th Time
-                    tr(ng-repeat="light in lighting", ng-show="selectedTank")
-                        td {{light.id}}
-                        td {{light.description}}
-                        td {{light.pin}}
-                        td
+
+
+div.container
+
+    div.table-responsive
+        table.table-bordered.table-striped.table-hover
+            tbody
+                tr
+                    th.col-sm-1 ID
+                    th.col-sm-1 Description
+                    th.col-sm-1 Pin ID
+                    th.col-sm-1 On
+                    th.col-sm-1 Off
+                    th.col-sm-1 Toggle
+                    th.span3 Fade
+
+                    th.col-sm-1 Time
+                tr(ng-repeat="light in lighting", ng-show="selectedTank")
+                    td
+                     center {{light.id}}
+                    td
+                        center {{light.description}}
+                    td
+                        center {{light.pin}}
+                    td
+                        center
                             button(ng-click="operateLight($index,'on')").btn On
-                        td
+                    td
+                        center
                             button(ng-click="operateLight($index,'off')").btn Off
-                        td
+                    td
+                        center
                             button(ng-click="operateLight($index,'toggle')").btn Toggle
-
-                        td.input-append
-
-                            input(ng-model="lightValue", type='text', id='mySlider{{$index}}', slider options='sliderOptions')
-                        td.input-append
+                    td.input-append
+                            input(ng-model="pwmValue", type='text', id='mySlider{{$index}}', slider options='sliderOptions')
+                    td.input-append
+                        center
                             select(ng-model="dayNightSelector")
                                 option(value='day') Day
                                 option(value='night') Night
+
