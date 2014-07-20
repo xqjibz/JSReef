@@ -15,6 +15,7 @@ div.container
                     th.span3 Fade
 
                     th.col-sm-1 Time
+                    th.col-sm-1 Save Max/Time
                 tr(ng-repeat="light in lighting", ng-show="selectedTank")
                     td
                      center {{light.id}}
@@ -33,9 +34,13 @@ div.container
                             button(ng-click="operateLight($index,'toggle')").btn Toggle
                     td.input-append
                             input(ng-model="pwmValue", type='text', id='mySlider{{$index}}', slider options='sliderOptions')
+
+
                     td.input-append
                         center
                             select(ng-model="dayNightSelector")
                                 option(value='day') Day
                                 option(value='night') Night
 
+                    td
+                        button(ng-click="saveMaxLightValue($index, 'savemax')").btn Save
