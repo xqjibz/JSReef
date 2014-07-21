@@ -55,10 +55,12 @@ module.exports = function(app, tanks) {
         response.send(returnValue)
     })
 
-    app.get('/tanks/:id/lighting/:lightid/action/:action', function(request, response){
+
+    app.get('/tanks/:id/lighting/:lightid/action/:action/brightness/:brightness?', function(request, response){
         var     action = request.params.action
             ,   tankid = request.params.id
             ,   lightid = request.params.lightid
+            ,   brightness = request.params.brightness || null
 
         var index = tanks.map(function(element) { return element._id}).indexOf(request.params.id)
         var lightIndex = tanks[index].lights.map(function(element){return element.id}).indexOf(parseInt(request.params.lightid))
@@ -78,6 +80,10 @@ module.exports = function(app, tanks) {
                 light.fadeOut()
                 console.log('TURN OFF')
                 console.log(light.isOn)
+            }
+            if(action === 'setbright'){
+                console.log('setting brightness to: ' + brightness)
+                light.brightness(brightness)
             }
             if(action === 'toggle'){
                 console.log('toggle')

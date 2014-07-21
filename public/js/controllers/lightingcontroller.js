@@ -21,14 +21,20 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
 
     $scope.operateLight = function(index, action){
         console.log(action)
+        if(action === 'setbright'){
+            // do something with socket.io here and quit $@$%%ing with routes.
+            Restangular.one('tanks', $scope.selectedTank).one('lighting', $scope.lighting[index].id).one('action', action).one('brightness', $scope.lighting[index].pwmValue).get()
+        } else {
+            Restangular.one('tanks', $scope.selectedTank).one('lighting', $scope.lighting[index].id).one('action', action).one('brightness', null).get()
+        }
 
-        Restangular.one('tanks', $scope.selectedTank).one('lighting', $scope.lighting[index].id).one('action', action).get()
     }
 
     $scope.$watch(function (){
         // just in case we need to add something else to the watch.
         return {
-            tankSelector : SharedData.getSelectedTank()
+                tankSelector : SharedData.getSelectedTank()
+            ,   allLighting  : $scope.allLighting
         }
     }, $scope.updateLighting, true)
 
