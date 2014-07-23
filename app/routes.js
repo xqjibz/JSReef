@@ -1,7 +1,7 @@
 var util = require('util')
 
 var returnIdPinDesc = function(element){
-    return { id: element.id, pin: element.pin, description: element.description}
+    return { id: element.id, pin: element.pin, description: element.description, pwmValue : element.pwmValue }
 }
 
 module.exports = function(app, tanks) {
@@ -91,10 +91,10 @@ module.exports = function(app, tanks) {
                 //console.log(util.inspect(light, true, null))
                 if(light.isOn){
                     console.log('fade out')
-                    light.fadeOut()
+                    light.off()
                 } else {
                     console.log('fade in')
-                    light.fadeIn()
+                    light.on()
                 }
             }
             if(action === 'fadedown'){
