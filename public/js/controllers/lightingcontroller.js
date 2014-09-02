@@ -9,11 +9,11 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
 
     }
 
-    $scope.sliderOptions = {
+    $scope.options = {
             from    : 0
         ,   to      : 255
         ,   step    : 1
-        ,   onstatechange : function(value) { console.log('new value is: ' + value)}
+        ,   onstatechange : function(value) {   }
     }
 
     // this needs tied to the J5 value for the LED Object
