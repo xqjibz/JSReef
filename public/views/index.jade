@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+    head
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(charset='utf8')
+        base(href='/')
+        title JS Tank controller
+        link(rel='stylesheet', href='libs/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='libs/ng-slider/dist/css/ng-slider.min.css')
+        script(src="libs/angular/angular.js")
+        script(src='libs/angular-sanitize/angular-sanitize.min.js')
+        script(src='libs/angular-route/angular-route.js')
+        script(src='libs/jquery/dist/jquery.min.js')
+        script(src='libs/ng-slider/src/ng-slider.js')
+        script(src="libs/underscore/underscore.js")
+        script(src='libs/restangular/dist/restangular.js')
+        script(src="js/services/shared-data.js")
+        script(src="js/controllers/maincontroller.js")
+        script(src="js/controllers/lightingcontroller.js")
+        script(src="js/controllers/pumpscontroller.js")
+        script(src="js/controllers/settingscontroller.js")
+        script(src="js/controllers/outletscontroller.js")
+        script(src="js/controllers/schedulescontroller.js")
+        script(src="js/approutes.js")
+        script(src="js/jsreef.js")
+
+    body(ng-app="JSReefApp", ng-controller="MainController")
+        nav.navbar.navbar-default
+            div.collapse.navbar-collapse
+
+                ul.nav.navbar-nav.navbar-left.input-append
+                    li
+                        a(href="/lighting") Lights
+                    li
+                        a(href="/pumps") Pumps
+                    li
+                        a(href="/settings") Settings
+                    li
+                        a(href="/outlets") Outlets
+                    li
+                        a(href="/schedules") Schedules
+                    li
+                        select(ng-model="tankSelection", class="padding-top: 6px;", ng-change="selectTankChange()").pull-right
+                            option(ng-repeat="tank in tanks") {{tank._id}}
+
+        div.container-fluid
+            div.row
+                div.col-md-1
+                div.col-md-10
+
+                    p this is the index file, yay.!
+                    p {{tankSelection}}
+
+            div(ng-view).row
+
