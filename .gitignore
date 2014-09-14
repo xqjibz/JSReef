@@ -2,7 +2,7 @@ public/*.html
 test/.coverage
 
 .idea/*
-
+.DS_Store
 .instrumented
 
 lib-cov
