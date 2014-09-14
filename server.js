@@ -37,12 +37,17 @@ require('./app/routes')(app, tanks)
 server.listen(port, function(){
     console.log('server ready')
     db.collection('tanks').findItems({}, function(err, results){
+        if(err){
+            throw new Error('unable to return tank list from Mongo Error is: ' + err)
+        }
         tanks.push.apply(tanks, results)
         server.emit('ready')
         //console.log(util.inspect(tanks, true,null))
     })
 
 })
+
+
 
 
 var serverReadyCB = require('./lib/server-ready-cb')(tanks, argv)

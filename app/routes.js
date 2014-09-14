@@ -115,15 +115,14 @@ module.exports = function(app, tanks) {
     })
 
     app.get('/schedules', function(request, response){
-        console.log('sending schedules')
-        //console.log(util.inspect(tanks, true, null))
-        // return all outlets and lights.
+        // return all lights.
         var controllableDevices = []
-        tanks[0].outlets.forEach(function(element){
+
+        tanks[0].lights.forEach(function(element){
             console.log(element.description)
         })
 
-        response.send(200)
+        response.send(tanks[0].lights)
     })
 
     app.get('/views/settings', function(request, response){

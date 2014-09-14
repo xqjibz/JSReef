@@ -5,6 +5,7 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
         if($scope.selectedTank !== null){
             $scope.lighting = Restangular.all('tanks/' + $scope.selectedTank + '/lighting').getList().$object
             $scope.allLighting = Restangular.all('tanks/'+ $scope.selectedTank + '/lighting').getList()
+
         }
 
     }
@@ -13,7 +14,7 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
             from    : 0
         ,   to      : 255
         ,   step    : 1
-        ,   onstatechange : function(value) {   }
+        ,   onstatechange : function(value) { console.log(value)  }
     }
 
     // this needs tied to the J5 value for the LED Object
@@ -21,7 +22,7 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
 
 
     $scope.operateLight = function(index, action){
-        console.log(action)
+
         if(action === 'setbright'){
             // do something with socket.io here and quit $@$%%ing with routes.
             Restangular.one('tanks', $scope.selectedTank).one('lighting', $scope.lighting[index].id).one('action', action).one('brightness', $scope.lighting[index].pwmValue).get()
@@ -36,6 +37,7 @@ angular.module('LightingCtrl', []).controller('LightingController', function ( $
         return {
                 tankSelector : SharedData.getSelectedTank()
             ,   allLighting  : $scope.allLighting
+            //,   changeLighting : $scope.lighting
         }
     }, $scope.updateLighting, true)
 

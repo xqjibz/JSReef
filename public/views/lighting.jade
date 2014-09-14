@@ -33,7 +33,7 @@ div.container
                         center
                             button(ng-click="operateLight($index,'toggle')").btn Toggle
                     td.input-append
-                            input(ng-model="light.pwmValue", type='text', id="{{'slider' + $index}}", slider, options='options')
+                            input(ng-model="light.pwmValue", type='text', id="{{'slider' + $index}}", slider, options='options', ng-change="operateLight({{$index}}, 'setbright')")
                     td.input-append
                         center
                             select(ng-model="light.dayNightSelector")
