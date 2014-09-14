@@ -42,6 +42,10 @@ server.listen(port, function(){
         }
         tanks.push.apply(tanks, results)
         server.emit('ready')
+        // here vs in the onready callback, scope is why
+        scheduler = require('./lib/scheduler.js')(tanks)
+        // modified to 1 second for testing
+        setInterval(scheduler, 1000) // every 60-ish seconds, run this thing
         //console.log(util.inspect(tanks, true,null))
     })
 
