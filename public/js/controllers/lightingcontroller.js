@@ -1,4 +1,4 @@
-angular.module('LightingCtrl', []).controller('LightingController', function ( $route, $scope, $location, Restangular, SharedData)  {
+angular.module('LightingCtrl', []).controller('LightingController', function ( $route, $scope, $location, $log,Restangular, SharedData)  {
 
     $scope.updateLighting = function(){
         $scope.selectedTank = SharedData.getSelectedTank()
