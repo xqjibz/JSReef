@@ -3,9 +3,11 @@ var     five = require('johnny-five')
 
 
 board.on('ready', function(){
-    var led = new five.Led({ pin: 3 })
-
-    board.repl.inject({led : led})
+    var white = new five.Led({ pin: 5 })
+        ,   blue = new five.Led({pin : 3})
+        ,   uv  = new five.Led({pin : 6})
+        ,   moon = new five.Led({pin : 9})
+    board.repl.inject({white : white, blue : blue, uv : uv})
 
 })
 
