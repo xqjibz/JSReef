@@ -18,7 +18,12 @@
 //}
 
 var SunCalc = require('suncalc')
+
+
+
+
 var util = require('util')
+    ,   PWMParabola = require('./lib/pwmparabola')()
 var rightnow = new Date() //new Date('10/30/2014 13:34:45')
 rightnow.setHours(rightnow.getHours() + 1)
 var times = SunCalc.getTimes(rightnow, 24.6, -81.5 )
@@ -46,9 +51,6 @@ console.log(moonpos.azimuth * (180 / Math.PI))
 //
 //}
 
-function convert_range (x, in_min,  in_max,  out_min,  out_max){
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
 
 var startPWM = 0
 var endPWM = 255
@@ -71,49 +73,7 @@ function convert_range (x, in_min,  in_max,  out_min,  out_max){
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-function PWMParabola(startHour, startMinute, endHour, endMinute, startPWM, endPWM, oldvalue, dateOverride){
 
-    var     now = new Date()
-
-        ,   current_hour = now.getHours()
-        ,   startTime = new Date()
-        ,   endTime = new Date()
-    if(dateOverride){
-        now = dateOverride
-    }
-    //console.log('pwm parabola time: ', now.toString())
-    startTime.setHours(startHour)
-    startTime.setMinutes(startMinute)
-    endTime.setHours(endHour)
-    endTime.setMinutes(endMinute)
-
-    var     start = startTime.valueOf()
-        ,   end = endTime.valueOf()
-
-    //console.log('start time: ' ,startTime.toString(), ' : ', startTime.valueOf())
-    //console.log('end time: ', endTime.toString(), ' : ', endTime.valueOf())
-
-    if (start > end){ //Start is greater than End so its over midnight
-        //Example: 2300hrs to 0200hrs
-        if (current_hour < endHour){
-            console.log('adding on full days ms')
-            start -= 86400000; //past midnight
-        }
-        if (current_hour >= startHour) end += 86400000; //before midnight
-    }
-
-    current = now.valueOf()
-    //console.log('current: ', current, ' start: ', start, ' end: ', end)
-
-    if ( current <= start || current >= end){
-        return oldvalue // if we're outside of the range, return the original value
-    } else {
-        var     pwmDelta = endPWM - startPWM
-            ,   parabolaPhase = convert_range(current, start, end, 0, 180)
-
-        return Math.floor((startPWM + (pwmDelta * Math.sin((parabolaPhase) * (Math.PI / 180)))))
-    }
-}
 
 //var now = new Date('2014/10/10 12:01')
 //var current_hour = now.getHours()
@@ -141,14 +101,14 @@ function PWMParabola(startHour, startMinute, endHour, endMinute, startPWM, endPW
 //    console.log(startPWM + (pwmDelta * Math.sin((parabolaPhase) * (3.14 / 180))))
 //}
 
-//console.log(PWMParabola(13,0,3,0,0,20,'oldvalue', new Date('10/1/2014 01:00')))
+console.log(PWMParabola(13,0,3,0,0,20,'oldvalue', new Date('10/1/2014 01:00')))
 //
-//for(var i = 0 ; i < 24 ; i++){
-//
-//    var dateO = new Date()
-//    dateO.setHours(13 + i)
-//    var value = PWMParabola(13,00,3,00,0,20,'oldvalue', dateO)
-//    console.log(dateO.toString(), ' ' ,value)
-//
-//
-//}
+for(var i = 0 ; i < 24 ; i++){
+
+    var dateO = new Date()
+    dateO.setHours(13 + i)
+    var value = PWMParabola(13,00,3,00,0,20,'oldvalue', dateO)
+    console.log(dateO.getHours(),value)
+
+
+}
