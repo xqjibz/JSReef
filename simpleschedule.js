@@ -6,7 +6,7 @@ var     five = require('johnny-five')
     ,   uvValue = 0
     ,   moonValue = 0
     ,   SunCalc = require('suncalc')
-    ,   PWMParabola = require('./lib/PWMParabola')()
+    ,   PWMParabola = require('./lib/pwmarabola')()
 
 
 function convert_range (x, in_min,  in_max,  out_min,  out_max){
