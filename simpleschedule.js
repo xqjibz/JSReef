@@ -106,8 +106,11 @@ board.on('ready', function () {
         whiteValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,150,whiteValue)
         blueValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,255,blueValue)
         uvValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,255,uvValue)
-        if(moonillumination > 0)
+        if(moonillumination > 0){
+            console.log('moon rise: ', moonrise.getHours(), ':', moonrise.getMinutes(), ' moon set: ', moonset.getHours(), ':', moonset.getMinutes())
             moonValue = PWMParabola(moonrise.getHours(), moonrise.getMinutes(), moonset.getHours(), moonset.getMinutes(), 0, moonillumination, moonValue)
+        }
+
 
 
         console.log(now.toString() , ' white: ', whiteValue, ' blue: ', blueValue, ' uv: ', uvValue, ' moon: ', moonValue)
@@ -137,9 +140,9 @@ board.on('ready', function () {
         moonset = moontimes.set ? moontimes.set : moontimes.rise
         var illumination = SunCalc.getMoonIllumination(rightnow)  // full moon illumination
 
-        var moonillumination = (illumination.fraction * 20 ) < 1 ? 0 : (illumination.fraction * 20)
+        moonillumination = (illumination.fraction * 20 ) < 1 ? 0 : (illumination.fraction * 20)
         moonillumination = blue.value > moonillumination ? 0 : moonillumination
-        //console.log('moon illumination is: ', moonillumination)
+        console.log('moon illumination is: ', moonillumination)
         //console.log('sun azimuth is: ', position.azimuth * (180 / Math.PI))
         //console.log('sun altitude is: ', position.altitude * (180 / Math.PI))
         //var moonposition = SunCalc.getMoonPosition(rightnow, 24.6, -81.5)
