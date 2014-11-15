@@ -62,6 +62,8 @@ board.on('ready', function () {
         if(moonillumination > 0){
             console.log('moon rise: ', moonrise.getHours(), ':', moonrise.getMinutes(), ' moon set: ', moonset.getHours(), ':', moonset.getMinutes())
             moonValue = PWMParabola(moonrise.getHours(), moonrise.getMinutes(), moonset.getHours(), moonset.getMinutes(), 0, moonillumination, moonValue)
+            // no need to run the moon lights when blue is already larger
+            moonValue = blueValue > moonValue ? 0 : moonValue
         }
 
 
@@ -89,12 +91,12 @@ board.on('ready', function () {
         var moontimes = SunCalc.getMoonTimes(rightnow, 24.6, -81.5)
         sunrise = times.sunrise
         sunset = times.sunset
-        moonrise = moontimes.rise
+        moonrise = moontimes.rise ||  moontimes.set
         moonset = moontimes.set ? moontimes.set : moontimes.rise
         var illumination = SunCalc.getMoonIllumination(rightnow)  // full moon illumination
 
         moonillumination = (illumination.fraction * 20 ) < 1 ? 0 : (illumination.fraction * 20)
-        moonillumination = blue.value > moonillumination ? 0 : moonillumination
+        moonillumination = blue.value > moonillumination ? 0 : (moonillumination > Math.floor(moon))
         console.log('moon illumination is: ', moonillumination)
         //console.log('sun azimuth is: ', position.azimuth * (180 / Math.PI))
         //console.log('sun altitude is: ', position.altitude * (180 / Math.PI))
@@ -116,8 +118,8 @@ board.on('ready', function () {
     sunposition()
     setValues()
     operateLights()
-    setInterval(setValues,60000) // every tenth second, lightning strikes are the smallest unit
-    setInterval(operateLights,60000)
-    setInterval(sunposition,60000)
+    setInterval(setValues,1000) // every tenth second, lightning strikes are the smallest unit
+    setInterval(operateLights,1000)
+    setInterval(sunposition,60000 * 60)
     setInterval(function(){ debug = true}, 60000 * 60)
 })
