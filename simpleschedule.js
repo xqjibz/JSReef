@@ -68,10 +68,12 @@ board.on('ready', function () {
 
 
 
-        console.log(now.toString() , ' white: ', whiteValue, ' blue: ', blueValue, ' uv: ', uvValue, ' moon: ', moonValue)
+
     }
 
-
+    function debugLights(){
+        console.log(now.toString() , ' white: ', whiteValue, ' blue: ', blueValue, ' uv: ', uvValue, ' moon: ', moonValue)
+    }
 
     function operateLights(){
         white.brightness(whiteValue)
@@ -120,6 +122,7 @@ board.on('ready', function () {
     operateLights()
     setInterval(setValues,1000) // every tenth second, lightning strikes are the smallest unit
     setInterval(operateLights,1000)
+    setInterval(debugLights, 60000)
     setInterval(sunposition,60000 * 60)
     setInterval(function(){ debug = true}, 60000 * 60)
 })
