@@ -72,7 +72,7 @@ board.on('ready', function () {
     }
 
     function debugLights(){
-        console.log(now.toString() , ' white: ', whiteValue, ' blue: ', blueValue, ' uv: ', uvValue, ' moon: ', moonValue)
+        console.log(new Date().toString() , ' white: ', whiteValue, ' blue: ', blueValue, ' uv: ', uvValue, ' moon: ', moonValue)
     }
 
     function operateLights(){
