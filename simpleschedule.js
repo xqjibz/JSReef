@@ -98,7 +98,8 @@ board.on('ready', function () {
         var illumination = SunCalc.getMoonIllumination(rightnow)  // full moon illumination
 
         moonillumination = (illumination.fraction * 20 ) < 1 ? 0 : (illumination.fraction * 20)
-        moonillumination = blue.value > moonillumination ? 0 : (moonillumination > Math.floor(moon))
+
+        moonillumination = blue.value > moonillumination ? 0 : moonillumination
         console.log('moon illumination is: ', moonillumination)
         //console.log('sun azimuth is: ', position.azimuth * (180 / Math.PI))
         //console.log('sun altitude is: ', position.altitude * (180 / Math.PI))
@@ -123,6 +124,6 @@ board.on('ready', function () {
     setInterval(setValues,1000) // every tenth second, lightning strikes are the smallest unit
     setInterval(operateLights,1000)
     setInterval(debugLights, 60000)
-    setInterval(sunposition,60000 * 60)
+    setInterval(sunposition,1000 * 60)
     setInterval(function(){ debug = true}, 60000 * 60)
 })
