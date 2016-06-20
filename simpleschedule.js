@@ -56,9 +56,9 @@ board.on('ready', function () {
     function setValues(){
         var now = new Date()
         //sunrise is at 9 am for now, sunset at 11 pm
-        whiteValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,150,whiteValue)
-        blueValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,255,blueValue)
-        uvValue = PWMParabola(sunrise.getHours(),sunrise.getMinutes(),sunset.getHours(),sunset.getMinutes(),0,255,uvValue)
+        whiteValue = PWMParabola(sunrise.getHours(), sunrise.getMinutes(), sunset.getHours(), sunset.getMinutes(), 0, 150, whiteValue)
+        blueValue = PWMParabola(sunrise.getHours(), sunrise.getMinutes(), sunset.getHours(), sunset.getMinutes(), 0, 254, blueValue)
+        uvValue = PWMParabola(sunrise.getHours(), sunrise.getMinutes(), sunset.getHours(), sunset.getMinutes(), 0, 254, uvValue)
         if(moonillumination > 0){
             console.log('moon rise: ', moonrise.getHours(), ':', moonrise.getMinutes(), ' moon set: ', moonset.getHours(), ':', moonset.getMinutes())
             moonValue = PWMParabola(moonrise.getHours(), moonrise.getMinutes(), moonset.getHours(), moonset.getMinutes(), 0, moonillumination, moonValue)

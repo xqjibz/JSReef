@@ -101,13 +101,13 @@ function convert_range (x, in_min,  in_max,  out_min,  out_max){
 //    console.log(startPWM + (pwmDelta * Math.sin((parabolaPhase) * (3.14 / 180))))
 //}
 
-console.log(PWMParabola(13,0,3,0,0,20,'oldvalue', new Date('10/1/2014 01:00')))
+console.log(PWMParabola(13,0,3,0,0,150,'oldvalue', new Date('10/1/2014 01:00')))
 //
 for(var i = 0 ; i < 24 ; i++){
 
     var dateO = new Date()
-    dateO.setHours(13 + i)
-    var value = PWMParabola(13,00,3,00,0,20,'oldvalue', dateO)
+    dateO.setHours(dateO.getHours() + i)
+    var value = PWMParabola(13,00,3,00,0,150,'oldvalue', dateO)
     console.log(dateO.getHours(),value)
 
 
